@@ -87,3 +87,95 @@ const checkGuess = () => {
 };
 
 guessSubmit.addEventListener('click', checkGuess);
+
+
+----------------- lisatud funktsioonidega, siitmaalt ei tööta enam üldse
+
+/* 2 funktsiooni
+
+    function setGameOver() {
+    guessField.disabled = true;
+    guessSubmit.disabled = true;
+    resetButton = document.createElement('button');
+    resetButton.textContent = 'Alusta uuesti';
+    document.body.appendChild(resetButton);
+    resetButton.addEventListener('click', resetGame);
+}
+
+
+    function resetGame() {
+        
+            
+    }
+*/
+
+const guessField = 
+      document.querySelector('.guessField');
+const guessSubmit =
+      document.querySelector('.guessSubmit');
+
+const guesses =
+      document.querySelector('.guesses');
+const lastResults =
+      document.querySelector('.lastResult');
+const lowOrHigh =
+      document.querySelector('.lowOrHigh');
+
+let guessCount = 1;
+let randomNumber = Math.floor(Math.random() * 100) + 1;
+
+// let resetButton;
+
+const checkGuess = () => {
+    let userGuess = Number(guessField.value);    
+}   
+
+    
+    if (guessCount === 1) {
+      guesses.textContent = 'Eelnevad pakkumised: ';    
+    }
+    
+    guesses.textContent += `${userGuess} `;
+
+// Kui kasutaja pakub õigesti    
+    if(userGuess === randomNumber) {
+        lastResults.textContent = 'Palju õnne';
+        lastResults.style.backgroundColor = 'green';
+        lowOrHigh.textContent = '';
+        
+// setGameOver();
+
+        
+// Kui kasutaja pakub 10 korda valesti        
+    }
+    
+    else if (guessCount === 10) {
+        lastResults.textContent = 'Mäng läbi';
+        lastResults.style.backgroundColor = 'blue';    
+        lowOrHigh.textContent = '';
+        setGameOver();
+//         
+    } else {
+        lastResults.textContent = 'Vale vastus';
+        lastResults.style.backgroundColor = 'red';
+        
+        const lowOrHighText = 'Viimane pakkumine oli liiga ';
+        
+        
+    // Kui number on liiga madal    
+    if(userGuess < randomNumber) {
+        lowOrHigh.textContent = lowOrHighText + 'madal';
+       
+       }
+    // Kui number on liiga kõrge    
+    else if (userGuess > randomNumber) {
+        lowOrHigh.textContent = lowOrHighText + 'kõrge';
+    }   
+}
+    
+    guessCount++;
+    guessField.value = '';
+    guessField.focus();
+};
+
+guessSubmit.addEventListener('click', checkGuess);
